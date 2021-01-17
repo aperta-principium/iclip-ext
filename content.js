@@ -6,7 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const copy = document.querySelector("#copy");
 
             // use `url` here inside the callback because it's asynchronous!
-            fetch(`https://interclip.app/includes/api?url=${url}`).then(res => res.json()).then(r => code.innerHTML = r.result).catch(e => alert(e));
+            fetch(`https://interclip.app/includes/api`, { 
+                method: 'POST',       
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }, 
+                body: new URLSearchParams({
+                    url: url,
+                }), 
+            }).then(res => res.json()).then(r => code.innerHTML = r.result).catch(e => alert(e));
 
             copy.onclick = () => {
                 navigator.clipboard.writeText(code.innerText)
