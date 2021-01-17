@@ -14,7 +14,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: new URLSearchParams({
                     url: url,
                 }), 
-            }).then(res => res.json()).then(r => code.innerHTML = r.result).catch(e => alert(e));
+            }).then(res => res.json()).then(r => {
+                code.innerHTML = r.result;
+                const qrCode = new QRCodeStyling({
+                    width: 150,
+                    height: 150,
+                    data: `https://interclip.app/${r.result}`,
+                    image: "https://raw.githubusercontent.com/aperta-principium/Interclip/main/img/interclip_logo.png",
+                    dotsOptions: {
+                        color: "#ff9800",
+                        type: "square"
+                    },
+                    backgroundOptions: {
+                        color: "#ffffff",
+                    }
+                  });    qrCode.append(document.getElementById("qr"));
+            }).catch(e => alert(e));
 
             copy.onclick = () => {
                 navigator.clipboard.writeText(code.innerText)
