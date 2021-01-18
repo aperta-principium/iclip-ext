@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+        const environment = chrome || browser;
         //alert(location.href);
-        chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+        environment.tabs.query({active: true, currentWindow: true}, tabs => {
             const url = tabs[0].url;
             const code = document.querySelector("#code");
             const copy = document.querySelector("#copy");
