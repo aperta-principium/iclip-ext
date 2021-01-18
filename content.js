@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     url: url,
                 }), 
             }).then(res => res.json()).then(r => {
-                code.innerHTML = r.result;
+                code.innerText = r.result;
                 const qrCode = new QRCodeStyling({
                     width: 150,
                     height: 150,
