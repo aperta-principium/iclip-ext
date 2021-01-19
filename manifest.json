@@ -1,6 +1,6 @@
 {
     "name": "Interclip extension",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "manifest_version": 2,
     "description": "A chromium extension to interact with the Interclip API.",
     "icons": {
