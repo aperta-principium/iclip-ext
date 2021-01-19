@@ -1,0 +1,16 @@
+body {
+    width: 200px;
+    margin: auto;
+    text-align: center;
+    background: #ff9800;
+}
+
+#code {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+#qr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
