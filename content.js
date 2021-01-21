@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
         const environment = chrome || browser;
-        //alert(location.href);
+        const theme = window.matchMedia("(prefers-color-scheme: dark)").matches === true ? "dark" : "light";
+
         environment.tabs.query({active: true, currentWindow: true}, tabs => {
             const url = tabs[0].url;
             const code = document.querySelector("#code");
@@ -23,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     data: `https://interclip.app/${r.result}`,
                     image: "https://raw.githubusercontent.com/aperta-principium/Interclip/main/img/interclip_logo.png",
                     dotsOptions: {
-                        color: "#ff9800",
+                        color: theme === "light" ? "#ff9800" : "#ffffff",
                         type: "square"
                     },
                     backgroundOptions: {
-                        color: "#ffffff",
+                        color: theme === "light" ? "#ffffff" : "#444444",
                     }
                   });    qrCode.append(document.getElementById("qr"));
             }).catch(e => alert(e));
