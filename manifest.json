@@ -16,7 +16,6 @@
         "images/*.jpeg"
     ],
     "permissions": [
-        "activeTab",
         "tabs"
     ]
 }
