@@ -45,9 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             copy.onclick = () => {
                 navigator.clipboard.writeText(code.innerText)
-                .then(() => {
-                    // Success!
-                })
                 .catch(err => {
                     alert(err);
                 });
