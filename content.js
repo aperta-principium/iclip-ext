@@ -16,21 +16,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: new URLSearchParams({
                     url: url,
                 }), 
-            }).then(res => res.json()).then(r => {
-                code.innerText = r.result;
-                const qrCode = new QRCodeStyling({
-                    width: 150,
-                    height: 150,
-                    data: `https://interclip.app/${r.result}`,
-                    image: "https://raw.githubusercontent.com/aperta-principium/Interclip/main/img/interclip_logo.png",
-                    dotsOptions: {
-                        color: theme === "light" ? "#ff9800" : "#ffffff",
-                        type: "square"
-                    },
-                    backgroundOptions: {
-                        color: theme === "light" ? "#ffffff" : "#444444",
-                    }
-                  });    qrCode.append(document.getElementById("qr"));
+            }).then(res => {
+                if(res.ok) {
+                    return res.json();
+                } else {
+                    return null;
+                }
+            }).then(r => {
+                if (r) {
+                    code.innerText = r.result;
+                    const qrCode = new QRCodeStyling({
+                        width: 150,
+                        height: 150,
+                        data: `https://interclip.app/${r.result}`,
+                        image: "https://raw.githubusercontent.com/aperta-principium/Interclip/main/img/interclip_logo.png",
+                        dotsOptions: {
+                            color: theme === "light" ? "#ff9800" : "#ffffff",
+                            type: "square"
+                        },
+                        backgroundOptions: {
+                            color: theme === "light" ? "#ffffff" : "#444444",
+                        }
+                    });    qrCode.append(document.getElementById("qr"));
+                } else {
+                    code.innerText = "Request failed";
+                }
             }).catch(e => alert(e));
 
             copy.onclick = () => {
