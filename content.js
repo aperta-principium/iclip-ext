@@ -51,3 +51,41 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         });
 });
+document.getElementById("buttonChange").addEventListener("click", handleActionType)
+document.getElementById("buttonConfirm").addEventListener("click", clickedInput)
+
+let enabledFetchCurrent = true
+
+function handleActionType() {
+	if (!enabledFetchCurrent) {
+		document.getElementById("currentPage").style = ""
+		document.getElementById("getCode").style = "display: none;"
+	} else {
+		document.getElementById("currentPage").style = "display: none;"
+		document.getElementById("getCode").style = ""
+	}
+	enabledFetchCurrent = !enabledFetchCurrent
+}
+
+async function clickedInput() {
+	const code = document.getElementById("codeInput").value
+	if (!code) {
+		document.getElementById("codeData").innerHTML = "No code provided"
+	}
+	document.getElementById("codeData").innerHTML = "Loading..."
+	const url = new URL("https://interclip.app/api/get")
+	url.searchParams.append("code", code)
+	const codeData = await fetch(url.toString()).then(res => {
+		if(res.ok) {
+			return res.json();
+		} else {
+			return null;
+		}
+	}).catch(e => alert(e));
+	
+	if (codeData?.status === "success") {
+		return document.getElementById("codeData").innerHTML = `<a href=${codeData.result} target="_blank">${codeData.result}</a>`
+	}
+	else document.getElementById("codeData").innerHTML = "Code not found"
+
+}

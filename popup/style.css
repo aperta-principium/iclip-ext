@@ -23,6 +23,14 @@ body {
     margin-bottom: 15px;
 }
 
+#codeData {
+	font-size: 0.85rem;
+}
+a:link { text-decoration: none; color: inherit; }
+a:visited { text-decoration: none; color: inherit; }
+a:hover { text-decoration: none; color: inherit; }
+a:active { text-decoration: none; color: inherit; }
+
 #qr {
     margin-top: 15px;
     margin-bottom: 15px;

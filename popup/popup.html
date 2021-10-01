@@ -6,13 +6,24 @@
     </head>
     <body>
         <h1>Interclip</h1>
-        <div>
+		<div class="tab">
+			<button class="changetype" id="buttonChange">Switch action type</button>
+		</div>
+
+        <div id="currentPage">
             Code for this page: <br>
             <span id="code">...</span>
             <br>
             <button id="copy">copy</button>
             <div id="qr"></div>
         </div>
+
+		<div id="getCode" style="display: none;">
+			Please input a code: <br>
+			<input id="codeInput">
+			<button id="buttonConfirm">Fetch code</button>
+			<div id="codeData">No code data to display</div>
+		</div>
     </body>
     <script type="text/javascript" src="../qr-code-styling.js"></script>
     <script src="../content.js"></script>
