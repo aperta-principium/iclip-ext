@@ -68,14 +68,16 @@ document
 let enabledFetchCurrent = true;
 
 function handleActionType() {
-  if (!enabledFetchCurrent) {
-    document.getElementById("currentPage").style = "";
-    document.getElementById("getCode").style = "display: none;";
-  } else {
-    document.getElementById("currentPage").style = "display: none;";
-    document.getElementById("getCode").style = "";
-  }
-  enabledFetchCurrent = !enabledFetchCurrent;
+	if (!enabledFetchCurrent) {
+		document.getElementById("currentPage").style = ""
+		document.getElementById("getCode").style = "display: none;"
+		document.getElementById("buttonChange").innerHTML = "Recieve a clip"
+	} else {
+		document.getElementById("currentPage").style = "display: none;"
+		document.getElementById("getCode").style = ""
+		document.getElementById("buttonChange").innerHTML = "Create a clip"
+	}
+	enabledFetchCurrent = !enabledFetchCurrent
 }
 
 async function clickedInput() {

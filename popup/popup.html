@@ -6,9 +6,7 @@
     </head>
     <body>
         <h1>Interclip</h1>
-		<div class="tab">
-			<button class="changetype" id="buttonChange">Switch action type</button>
-		</div>
+		<button class="changetype" id="buttonChange" style="margin-bottom: 0.75rem;">Create a clip</button>
 
         <div id="currentPage">
             Code for this page: <br>
@@ -18,11 +16,12 @@
             <div id="qr"></div>
         </div>
 
-		<div id="getCode" style="display: none;">
+		<div id="getCode" style="display: none; margin-top: 2rem;">
 			Please input a code: <br>
-			<input id="codeInput">
-			<button id="buttonConfirm">Fetch code</button>
-			<div id="codeData">No code data to display</div>
+			<input id="codeInput" style="margin-top: 0.8rem">
+			<button id="buttonConfirm" style="margin-top: 0.7rem">Recieve a clip</button>
+			<br><br><br>
+			<div id="codeData" style="margin-top: 0.5rem;">No code data to display</div>
 		</div>
     </body>
     <script type="text/javascript" src="../qr-code-styling.js"></script>
