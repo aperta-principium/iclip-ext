@@ -1,91 +1,104 @@
-document.addEventListener('DOMContentLoaded', () => {
-        const environment = chrome || browser;
-        const theme = window.matchMedia("(prefers-color-scheme: dark)").matches === true ? "dark" : "light";
+document.addEventListener("DOMContentLoaded", () => {
+  const environment = chrome || browser;
+  const theme =
+    window.matchMedia("(prefers-color-scheme: dark)").matches === true
+      ? "dark"
+      : "light";
 
-        environment.tabs.query({active: true, currentWindow: true}, tabs => {
-            const url = tabs[0].url;
-            const code = document.querySelector("#code");
-            const copy = document.querySelector("#copy");
+  environment.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const url = tabs[0].url;
+    const code = document.querySelector("#code");
+    const copy = document.querySelector("#copy");
 
-            // use `url` here inside the callback because it's asynchronous!
-            fetch(`https://interclip.app/api/set`, { 
-                method: 'POST',       
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }, 
-                body: new URLSearchParams({
-                    url: url,
-                }), 
-            }).then(res => {
-                if(res.ok) {
-                    return res.json();
-                } else {
-                    return null;
-                }
-            }).then(r => {
-                if (r) {
-                    code.innerText = r.result;
-                    const qrCode = new QRCodeStyling({
-                        width: 150,
-                        height: 150,
-                        data: `https://interclip.app/${r.result}`,
-                        image: "https://raw.githubusercontent.com/aperta-principium/Interclip/main/img/interclip_logo.png",
-                        dotsOptions: {
-                            color: theme === "light" ? "#ff9800" : "#ffffff",
-                            type: "square"
-                        },
-                        backgroundOptions: {
-                            color: theme === "light" ? "#ffffff" : "#444444",
-                        }
-                    });    qrCode.append(document.getElementById("qr"));
-                } else {
-                    code.innerText = "Request failed";
-                }
-            }).catch(e => alert(e));
+    // use `url` here inside the callback because it's asynchronous!
+    fetch(`https://interclip.app/api/set`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        url: url,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return null;
+        }
+      })
+      .then((r) => {
+        if (r) {
+          code.innerText = r.result;
+          const qrCode = new QRCodeStyling({
+            width: 150,
+            height: 150,
+            data: `https://interclip.app/${r.result}`,
+            image:
+              "https://raw.githubusercontent.com/aperta-principium/Interclip/main/img/interclip_logo.png",
+            dotsOptions: {
+              color: theme === "light" ? "#ff9800" : "#ffffff",
+              type: "square",
+            },
+            backgroundOptions: {
+              color: theme === "light" ? "#ffffff" : "#444444",
+            },
+          });
+          qrCode.append(document.getElementById("qr"));
+        } else {
+          code.innerText = "Request failed";
+        }
+      })
+      .catch((e) => alert(e));
 
-            copy.onclick = () => {
-                navigator.clipboard.writeText(code.innerText)
-                .catch(err => {
-                    alert(err);
-                });
-            };
-        });
+    copy.onclick = () => {
+      navigator.clipboard.writeText(code.innerText).catch((err) => {
+        alert(err);
+      });
+    };
+  });
 });
-document.getElementById("buttonChange").addEventListener("click", handleActionType)
-document.getElementById("buttonConfirm").addEventListener("click", clickedInput)
+document
+  .getElementById("buttonChange")
+  .addEventListener("click", handleActionType);
+document
+  .getElementById("buttonConfirm")
+  .addEventListener("click", clickedInput);
 
-let enabledFetchCurrent = true
+let enabledFetchCurrent = true;
 
 function handleActionType() {
-	if (!enabledFetchCurrent) {
-		document.getElementById("currentPage").style = ""
-		document.getElementById("getCode").style = "display: none;"
-	} else {
-		document.getElementById("currentPage").style = "display: none;"
-		document.getElementById("getCode").style = ""
-	}
-	enabledFetchCurrent = !enabledFetchCurrent
+  if (!enabledFetchCurrent) {
+    document.getElementById("currentPage").style = "";
+    document.getElementById("getCode").style = "display: none;";
+  } else {
+    document.getElementById("currentPage").style = "display: none;";
+    document.getElementById("getCode").style = "";
+  }
+  enabledFetchCurrent = !enabledFetchCurrent;
 }
 
 async function clickedInput() {
-	const code = document.getElementById("codeInput").value
-	if (!code) {
-		document.getElementById("codeData").innerHTML = "No code provided"
-	}
-	document.getElementById("codeData").innerHTML = "Loading..."
-	const url = new URL("https://interclip.app/api/get")
-	url.searchParams.append("code", code)
-	const codeData = await fetch(url.toString()).then(res => {
-		if(res.ok) {
-			return res.json();
-		} else {
-			return null;
-		}
-	}).catch(e => alert(e));
-	
-	if (codeData?.status === "success") {
-		return document.getElementById("codeData").innerHTML = `<a href=${codeData.result} target="_blank">${codeData.result}</a>`
-	}
-	else document.getElementById("codeData").innerHTML = "Code not found"
+  const code = document.getElementById("codeInput").value;
+  if (!code) {
+    document.getElementById("codeData").innerHTML = "No code provided";
+  }
+  document.getElementById("codeData").innerHTML = "Loading...";
+  const url = new URL("https://interclip.app/api/get");
+  url.searchParams.append("code", code);
+  const codeData = await fetch(url.toString())
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return null;
+      }
+    })
+    .catch((e) => alert(e));
 
+  if (codeData?.status === "success") {
+    return (document.getElementById(
+      "codeData"
+    ).innerHTML = `<a href=${codeData.result} target="_blank">${codeData.result}</a>`);
+  } else document.getElementById("codeData").innerHTML = "Code not found";
 }
