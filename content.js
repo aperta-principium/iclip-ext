@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const copy = document.querySelector("#copy");
 
             // use `url` here inside the callback because it's asynchronous!
-            fetch(`https://interclip.app/includes/api`, { 
+            fetch(`https://interclip.app/api/set`, { 
                 method: 'POST',       
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
