@@ -58,29 +58,40 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   });
 });
-document
-  .getElementById("buttonChange")
-  .addEventListener("click", handleActionType);
-document
-  .getElementById("buttonConfirm")
-  .addEventListener("click", clickedInput);
 
 let enabledFetchCurrent = true;
 
+document
+  .getElementById("buttonChange")
+  .addEventListener("click", handleActionType);
+
+document
+  .getElementById("buttonConfirm")
+  .addEventListener("click", checkCode);
+
+document.onkeyup = (e) => {
+  if (e.key === "Enter") {
+    if (document.activeElement.tagName === "INPUT") {
+      checkCode();
+    }
+  }
+};
+
 function handleActionType() {
-	if (!enabledFetchCurrent) {
-		document.getElementById("currentPage").style = ""
-		document.getElementById("getCode").style = "display: none;"
-		document.getElementById("buttonChange").innerHTML = "Recieve a clip"
-	} else {
-		document.getElementById("currentPage").style = "display: none;"
-		document.getElementById("getCode").style = ""
-		document.getElementById("buttonChange").innerHTML = "Create a clip"
-	}
-	enabledFetchCurrent = !enabledFetchCurrent
+  console.log("Handling action");
+  if (!enabledFetchCurrent) {
+    document.getElementById("currentPage").style = "";
+    document.getElementById("getCode").style = "display: none;";
+    document.getElementById("buttonChange").innerHTML = "Recieve a clip";
+  } else {
+    document.getElementById("currentPage").style = "display: none;";
+    document.getElementById("getCode").style = "";
+    document.getElementById("buttonChange").innerHTML = "Create a clip";
+  }
+  enabledFetchCurrent = !enabledFetchCurrent;
 }
 
-async function clickedInput() {
+async function checkCode() {
   const code = document.getElementById("codeInput").value;
   if (!code) {
     document.getElementById("codeData").innerHTML = "No code provided";
@@ -103,4 +114,5 @@ async function clickedInput() {
       "codeData"
     ).innerHTML = `<a href=${codeData.result} target="_blank">${codeData.result}</a>`);
   } else document.getElementById("codeData").innerHTML = "Code not found";
+  return false;
 }

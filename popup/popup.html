@@ -1,29 +1,36 @@
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Interclip</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <h1>Interclip</h1>
-		<button class="changetype" id="buttonChange" style="margin-bottom: 0.75rem;">Receive a clip</button>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Interclip</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-        <div id="currentPage">
-            Code for this page: <br>
-            <span id="code">...</span>
-            <br>
-            <button id="copy">copy</button>
-            <div id="qr"></div>
-        </div>
+  <body>
+    <h1>Interclip</h1>
+    <button class="changetype" id="buttonChange" style="margin-bottom: 0.75rem">
+      Receive a clip
+    </button>
 
-		<div id="getCode" style="display: none; margin-top: 2rem;">
-			Please input a code: <br>
-			<input id="codeInput" style="margin-top: 0.8rem">
-			<button id="buttonConfirm" style="margin-top: 0.7rem">Recieve a clip</button>
-			<br><br><br>
-			<div id="codeData" style="margin-top: 0.5rem; word-break:break-all;">No code data to display</div>
-		</div>
-    </body>
-    <script type="text/javascript" src="../qr-code-styling.js"></script>
-    <script src="../content.js"></script>
+    <div id="currentPage">
+      Code for this page: <br />
+      <span id="code">...</span>
+      <br />
+      <button id="copy">copy</button>
+      <div id="qr"></div>
+    </div>
+
+    <div id="getCode" style="display: none; margin-top: 2rem">
+      Please input a code: <br />
+      <form action="#" id="codeForm">
+        <input id="codeInput" style="margin-top: 0.8rem" />
+        <button id="buttonConfirm" style="margin-top: 0.7rem" type="submit">Retrieve</button>
+      </form>
+      <br /><br /><br />
+      <div id="codeData" style="margin-top: 0.5rem; word-break: break-all">
+        No code data to display
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="../qr-code-styling.js"></script>
+  <script src="../content.js"></script>
 </html>
