@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: new URLSearchParams({
-        url: url,
+        url,
       }),
     })
       .then((res) => {
@@ -65,9 +65,7 @@ document
   .getElementById("buttonChange")
   .addEventListener("click", handleActionType);
 
-document
-  .getElementById("buttonConfirm")
-  .addEventListener("click", checkCode);
+document.getElementById("buttonConfirm").addEventListener("click", checkCode);
 
 document.onkeyup = (e) => {
   if (e.key === "Enter") {
