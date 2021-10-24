@@ -76,7 +76,6 @@ document.onkeyup = (e) => {
 };
 
 function handleActionType() {
-  console.log("Handling action");
   if (!enabledFetchCurrent) {
     document.getElementById("currentPage").style = "";
     document.getElementById("getCode").style = "display: none;";
