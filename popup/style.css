@@ -1,44 +1,56 @@
 @font-face {
-    font-family: 'Palanquin';
-    src: url('../fonts/Palanquin-Regular.woff2') format('woff2'),
-        url('../fonts/Palanquin-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Palanquin";
+  src: url("../fonts/Palanquin-Regular.woff2") format("woff2"),
+    url("../fonts/Palanquin-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 * {
-    font-family: 'Palanquin';
+  font-family: "Palanquin";
 }
 
 body {
-    width: 200px;
-    margin: auto;
-    text-align: center;
-    background: #ff9800;
+  width: 200px;
+  margin: auto;
+  text-align: center;
+  background: #157efb;
+  color: white;
 }
 
 #code {
-    font-size: 3rem;
-    margin-bottom: 15px;
+  font-size: 3rem;
+  margin-bottom: 15px;
 }
 
 #codeData {
-	font-size: 0.85rem;
+  font-size: 0.85rem;
 }
-a:link { text-decoration: none; color: inherit; }
-a:visited { text-decoration: none; color: inherit; }
-a:hover { text-decoration: none; color: inherit; }
-a:active { text-decoration: none; color: inherit; }
+a:link {
+  text-decoration: none;
+  color: inherit;
+}
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
 
 #qr {
-    margin-top: 15px;
-    margin-bottom: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 @media (prefers-color-scheme: dark) {
-    body {
-        background: #444444;
-        color: #fff;
-    }
+  body {
+    background: #151515;
+  }
 }

@@ -37,11 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
             image:
               "https://raw.githubusercontent.com/aperta-principium/Interclip/main/img/interclip_logo.png",
             dotsOptions: {
-              color: theme === "light" ? "#ff9800" : "#ffffff",
+              color: theme === "light" ? "#157efb" : "#ffffff",
               type: "square",
             },
             backgroundOptions: {
-              color: theme === "light" ? "#ffffff" : "#444444",
+              color: theme === "light" ? "#ffffff" : "#151515",
             },
           });
           qrCode.append(document.getElementById("qr"));
